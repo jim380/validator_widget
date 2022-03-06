@@ -1,16 +1,19 @@
-# flutter_http
+# Cosmos Validator Widget
 
-A new Flutter project.
+A developer series of how to build your own validator-centric dashboard with Flutter, with cross-platform support (web, mobile and desktop-native).
 
-## Getting Started
+## Prerequisite
 
-This project is a starting point for a Flutter application.
+- Install [Flutter](https://docs.flutter.dev/get-started/install)
+- Knowledge of Dart and Flutter
+- Patience, peace and love
 
-A few resources to get you started if this is your first Flutter project:
+## Local Environment Setup
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```bash
+$ cd <working_dir> && git clone <repo_url>
+$ flutter run -d chrome # or whatever simulator you prefer
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Credit
+- https://github.com/abuanwar072/Flutter-Responsive-Admin-Panel-or-Dashboard

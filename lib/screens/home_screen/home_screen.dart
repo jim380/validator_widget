@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
-import '../staking_params_client.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:validator_widget/utils/responsive.dart';
+import 'package:validator_widget/screens/dashboard/dashboard_screen.dart';
+import 'package:validator_widget/screens/home_screen/components/side_menu.dart';
+import 'package:validator_widget/controllers/menu_controller.dart';
+import 'package:validator_widget/staking_params_client.dart';
+import 'package:provider/provider.dart';
+
 class HomePage extends StatefulWidget {
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -85,6 +95,38 @@ class _HomePageState extends State<HomePage> {
                   child: const Text('GET'),
                 ),
               ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: context.read<MenuController>().scaffoldKey,
+      drawer: const SideMenu(),
+      body: SafeArea(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (Responsive.isDesktop(context))
+              const Expanded(
+                // default flex = 1
+                // and it takes 1/6 part of the screen
+                child: SideMenu(),
+              ),
+            Expanded(
+              // It takes 5/6 part of the screen
+              flex: 5,
+              child: DashboardScreen(),
             ),
           ],
         ),
