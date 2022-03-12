@@ -17,3 +17,4 @@ $ flutter run -d chrome # or whatever simulator you prefer
 
 ## Credit
 - https://github.com/abuanwar072/Flutter-Responsive-Admin-Panel-or-Dashboard
+- https://github.com/deniscolak/smart-admin-dashboard?ref=flutterawesome.com

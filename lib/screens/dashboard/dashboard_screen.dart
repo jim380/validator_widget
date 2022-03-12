@@ -8,15 +8,19 @@ import 'package:validator_widget/screens/dashboard/components/balance_detail.dar
 import 'package:validator_widget/screens/dashboard/components/my_info.dart';
 
 class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({
+    Key? key,
+  }) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: EdgeInsets.all(defaultPadding),
+        padding: const EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            Header(),
-            SizedBox(height: defaultPadding),
+            const Header(),
+            const SizedBox(height: defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -24,20 +28,20 @@ class DashboardScreen extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      MyInfo(),
-                      SizedBox(height: defaultPadding),
-                      RecentActivities(),
+                      const MyInfo(),
+                      const SizedBox(height: defaultPadding),
+                      const RecentActivities(),
                       if (Responsive.isMobile(context))
-                        SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) BalanceDetail(),
+                        const SizedBox(height: defaultPadding),
+                      if (Responsive.isMobile(context)) const BalanceDetail(),
                     ],
                   ),
                 ),
                 if (!Responsive.isMobile(context))
-                  SizedBox(width: defaultPadding),
+                  const SizedBox(width: defaultPadding),
                 // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
-                  Expanded(
+                  const Expanded(
                     flex: 2,
                     child: BalanceDetail(),
                   ),

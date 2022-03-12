@@ -6,10 +6,14 @@ import 'package:validator_widget/controllers/menu_controller.dart';
 import 'package:validator_widget/constants/constants.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
