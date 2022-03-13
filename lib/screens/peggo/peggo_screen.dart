@@ -4,8 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:validator_widget/constants/constants.dart';
 import 'package:validator_widget/screens/dashboard/components/header.dart';
 import 'package:validator_widget/screens/peggo/components/peggo_info_card.dart';
-
+import 'package:validator_widget/models/pages.dart';
 class PeggoScreen extends StatefulWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: Pages.peggoPath,
+      key: ValueKey(Pages.peggoPath),
+      child: const PeggoScreen(),
+    );
+  }
+
   const PeggoScreen({
     Key? key,
   }) : super(key: key);
@@ -15,6 +23,13 @@ class PeggoScreen extends StatefulWidget {
 }
 
 class _PeggoScreenState extends State<PeggoScreen> {
+   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // call funcstions in router.dart to update AppStateManager
+    // Provider.of<AppStateManager>(context, listen: false).goToPeggo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

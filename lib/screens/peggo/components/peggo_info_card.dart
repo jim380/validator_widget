@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:validator_widget/constants/constants.dart';
 import 'package:validator_widget/utils/responsive.dart';
 import 'package:validator_widget/models/dummy_peggo_info.dart';
-import 'package:validator_widget/models/staking_params.dart';
 import 'package:validator_widget/screens/peggo/components/peggo_info_widget.dart';
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:validator_widget/constants/constants.dart';
 import 'package:validator_widget/screens/dashboard/components/header.dart';
@@ -6,12 +7,33 @@ import 'package:validator_widget/utils/responsive.dart';
 import 'package:validator_widget/screens/dashboard/components/recent_activities.dart';
 import 'package:validator_widget/screens/dashboard/components/balance_detail.dart';
 import 'package:validator_widget/screens/dashboard/components/my_info.dart';
+import 'package:validator_widget/models/pages.dart';
+import 'package:validator_widget/models/models.dart';
+class DashboardScreen extends StatefulWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: Pages.dashboardPath,
+      key: ValueKey(Pages.dashboardPath),
+      child: const DashboardScreen(),
+    );
+  }
 
-class DashboardScreen extends StatelessWidget {
   const DashboardScreen({
     Key? key,
   }) : super(key: key);
-  
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // call funcstions in router.dart to update AppStateManager
+    Provider.of<AppStateManager>(context, listen: false).initializeApp();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

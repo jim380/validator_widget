@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:validator_widget/models/models.dart';
 
+// TODO add tab selection handling
 class SideMenu extends StatelessWidget {
   const SideMenu({
     Key? key,
@@ -17,17 +20,25 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Dashboard",
             svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {},
+            press: () {
+              Provider.of<AppStateManager>(context, listen: false)
+                  .goToDashboard();
+            },
           ),
           DrawerListTile(
             title: "Peggo",
             svgSrc: "assets/icons/menu_tran.svg",
-            press: () {},
+            press: () {
+              Provider.of<AppStateManager>(context, listen: false).goToPeggo();
+            },
           ),
           DrawerListTile(
             title: "Node Info",
             svgSrc: "assets/icons/menu_task.svg",
-            press: () {},
+            press: () {
+              Provider.of<AppStateManager>(context, listen: false)
+                  .goToNodeInfo();
+            },
           ),
           DrawerListTile(
             title: "Slashing",
