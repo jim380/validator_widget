@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import './models/staking_params.dart';
+import '../models/staking_params.dart';
 
 class StakingParamsClient {
   static const baseURL = "http://66.206.5.194:1317";

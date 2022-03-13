@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:validator_widget/constants/constants.dart';
 import 'package:validator_widget/utils/responsive.dart';
 import 'package:validator_widget/models/dummy_peggo_info.dart';
+import 'package:validator_widget/models/staking_params.dart';
 import 'package:validator_widget/screens/peggo/components/peggo_info_widget.dart';
 
 
@@ -18,30 +19,9 @@ class PeggoInfo extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox(
+          children: const [
+             SizedBox(
               width: 10,
-            ),
-            ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical:
-                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                ),
-              ),
-              onPressed: () {
-                // Navigator.of(context).push(new MaterialPageRoute<Null>(
-                //     builder: (BuildContext context) {
-                //       return new FormMaterial();
-                //     },
-                //     fullscreenDialog: true));
-              },
-              icon: const Icon(Icons.add),
-              label: const Text(
-                "Add New",
-              ),
             ),
           ],
         ),
@@ -84,6 +64,7 @@ class InformationCard extends StatelessWidget {
         childAspectRatio: childAspectRatio,
       ),
       itemBuilder: (context, index) =>
+          // PeggoInfoWidget(peggoData: stakingParamDataList[index]),
           PeggoInfoWidget(peggoData: dummyPeggoDataList[index]),
     );
   }

@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 
 import 'package:validator_widget/constants/constants.dart';
 import 'package:validator_widget/models/dummy_peggo_info.dart';
+import 'package:validator_widget/models/staking_params.dart';
 
 class PeggoInfoWidget extends StatefulWidget {
   const PeggoInfoWidget({
     Key? key,
     required this.peggoData,
   }) : super(key: key);
+
   final DummyPeggoInfo peggoData;
+  // final StakingParamsInfo peggoData;
 
   @override
   _PeggoInfoWidgetState createState() => _PeggoInfoWidgetState();
@@ -89,8 +92,8 @@ class _PeggoInfoWidgetState extends State<PeggoInfoWidget> {
                 height: 8,
               ),
               LineChartWidget(
-                  colors: widget.peggoData.colors,
-                  spotsData: widget.peggoData.spots,
+                colors: widget.peggoData.colors,
+                spotsData: widget.peggoData.spots,
               ),
             ],
           ),
@@ -105,14 +108,14 @@ class _PeggoInfoWidgetState extends State<PeggoInfoWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${widget.peggoData.volumeData}",
+                "${widget.peggoData.value}",
                 style: Theme.of(context)
                     .textTheme
                     .caption!
                     .copyWith(color: Colors.white70),
               ),
               Text(
-                widget.peggoData.totalStorage!,
+                widget.peggoData.change!,
                 style: Theme.of(context)
                     .textTheme
                     .caption!

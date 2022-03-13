@@ -6,8 +6,8 @@ import 'package:validator_widget/constants/constants.dart';
 class DummyPeggoInfo {
   IconData? icon;
   String? title;
-  String? totalStorage;
-  int? volumeData;
+  String? change;
+  String? value;
   int? percentage;
   Color? color;
   List<Color>? colors;
@@ -16,8 +16,8 @@ class DummyPeggoInfo {
   DummyPeggoInfo({
     this.icon,
     this.title,
-    this.totalStorage,
-    this.volumeData,
+    this.change,
+    this.value,
     this.percentage,
     this.color,
     this.colors,
@@ -26,9 +26,9 @@ class DummyPeggoInfo {
 
   DummyPeggoInfo.fromJson(Map<String, dynamic> json) {
     title = json['title'];
-    volumeData = json['volumeData'];
+    value = json['value'];
     icon = json['icon'];
-    totalStorage = json['totalStorage'];
+    change = json['change'];
     color = json['color'];
     percentage = json['percentage'];
     colors = json['colors'];
@@ -38,9 +38,9 @@ class DummyPeggoInfo {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['title'] = title;
-    data['volumeData'] = volumeData;
+    data['value'] = value;
     data['icon'] = icon;
-    data['totalStorage'] = totalStorage;
+    data['change'] = change;
     data['color'] = color;
     data['percentage'] = percentage;
     data['colors'] = colors;
@@ -54,10 +54,10 @@ List<DummyPeggoInfo> dummyPeggoDataList =
 
 var dummyPeggoData = [
   {
-    "title": "Employee",
-    "volumeData": 1328,
+    "title": "Bridge Status",
+    "value": "active",
     "icon": Icons.verified_user,
-    "totalStorage": "+ %20",
+    "change": "",
     "color": primaryColor,
     "percentage": 35,
     "colors": [
@@ -100,10 +100,10 @@ var dummyPeggoData = [
     ]
   },
   {
-    "title": "On Leave",
-    "volumeData": 1328,
+    "title": "Event Nonce",
+    "value": "1328",
     "icon": Icons.message,
-    "totalStorage": "+ %5",
+    "change": "+ 5%",
     "color": const Color(0xFFFFA113),
     "percentage": 35,
     "colors": const [Color(0xfff12711), Color(0xfff5af19)],
@@ -143,10 +143,10 @@ var dummyPeggoData = [
     ]
   },
   {
-    "title": "Onboarding",
-    "volumeData": 1328,
+    "title": "Active Validators",
+    "value": "100",
     "icon": Icons.comment,
-    "totalStorage": "+ %8",
+    "change": "+ 8%",
     "color": const Color(0xFFA4CDFF),
     "percentage": 10,
     "colors": const [Color(0xff2980B9), Color(0xff6DD5FA)],
@@ -186,10 +186,10 @@ var dummyPeggoData = [
     ]
   },
   {
-    "title": "Open Position",
-    "volumeData": 1328,
+    "title": "Orchestrator Status",
+    "value": "active",
     "icon": Icons.monitor_heart,
-    "totalStorage": "+ %8",
+    "change": "",
     "color": const Color(0xFFd50000),
     "percentage": 10,
     "colors": const [Color(0xff93291E), Color(0xffED213A)],
@@ -229,10 +229,10 @@ var dummyPeggoData = [
     ]
   },
   {
-    "title": "Efficiency",
-    "volumeData": 5328,
+    "title": "Reward",
+    "value": "538.22",
     "icon": Icons.ring_volume,
-    "totalStorage": "- %5",
+    "change": "- 5%",
     "color": const Color(0xFF00F260),
     "percentage": 78,
     "colors": const[Color(0xff0575E6), Color(0xff00F260)],

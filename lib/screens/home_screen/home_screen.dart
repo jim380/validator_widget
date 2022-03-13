@@ -3,21 +3,22 @@ import 'package:http/http.dart' as http;
 
 import 'package:validator_widget/utils/responsive.dart';
 import 'package:validator_widget/screens/dashboard/dashboard_screen.dart';
+import 'package:validator_widget/screens/peggo/peggo_screen.dart';
 import 'package:validator_widget/screens/home_screen/components/side_menu.dart';
 import 'package:validator_widget/controllers/menu_controller.dart';
-import 'package:validator_widget/staking_params_client.dart';
+import 'package:validator_widget/clients/staking_params_client.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({
+class TestPage extends StatefulWidget {
+  const TestPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _TestPageState createState() => _TestPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _TestPageState extends State<TestPage> {
   final StakingParamsClient _stakingParamsClient = StakingParamsClient();
   final _client = http.Client();
 
@@ -86,11 +87,11 @@ class _HomePageState extends State<HomePage> {
                       _unbondingTime = params.params!.unbondingTime;
                       _maxValidators =
                           int.tryParse(params.params!.maxValidators.toString());
-                    });
-                    _maxEntries =
+                      _maxEntries =
                         int.tryParse(params.params!.maxEntries.toString());
-                    _historicalEntries = int.tryParse(
+                      _historicalEntries = int.tryParse(
                         params.params!.historicalEntries.toString());
+                    });
                   },
                   child: const Text('GET'),
                 ),
@@ -126,7 +127,7 @@ class HomeScreen extends StatelessWidget {
             const Expanded(
               // It takes 5/6 part of the screen
               flex: 5,
-              child: DashboardScreen(),
+              child: PeggoScreen(), // DashboardScreen()
             ),
           ],
         ),
