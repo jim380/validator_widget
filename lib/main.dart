@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:validator_widget/constants/constants.dart';
 import 'package:validator_widget/models/models.dart';
 import 'package:validator_widget/navigation/router.dart';
+import 'package:validator_widget/controllers/menu_controller.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -43,9 +44,9 @@ class _MyAppState extends State<MyApp> {
       // ),
   //     home: MultiProvider(
   //       providers: [
-  //         ChangeNotifierProvider(
-  //           create: (context) => MenuController(),
-  //         ),
+          // ChangeNotifierProvider(
+          //   create: (context) => MenuController(),
+          // ),
   //         ChangeNotifierProvider(
   //           create: (context) => _appStateManager,
   //         ),
@@ -59,6 +60,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+            create: (context) => MenuController(),
+          ),
         ChangeNotifierProvider(
           create: (context) => _appStateManager,
         ),

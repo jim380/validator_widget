@@ -1,14 +1,73 @@
-// To parse this JSON data, do
-//
-//     final stakingParams = stakingParamsFromJson(jsonString);
-
 import 'dart:convert';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:validator_widget/constants/constants.dart';
+import 'package:validator_widget/clients/staking_params_client.dart';
+//----------------------------------------------//
+//                Staking Params                //
+//----------------------------------------------//
 
-StakingParams? stakingParams;
+// To parse this JSON data, do
+//
+//     final stakingParams = stakingParamsFromJson(jsonString);
+StakingParams stakingParamsFromJson(String str) =>
+    StakingParams.fromJson(json.decode(str));
+
+String stakingParamsToJson(StakingParams data) => json.encode(data.toJson());
+
+class StakingParams {
+  Params? params;
+
+  StakingParams({
+    this.params,
+  });
+
+  factory StakingParams.fromJson(Map<String, dynamic> json) => StakingParams(
+        params: Params.fromJson(json["params"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "params": params!.toJson(),
+      };
+}
+
+class Params {
+  Params({
+    this.unbondingTime,
+    this.maxValidators,
+    this.maxEntries,
+    this.historicalEntries,
+    this.bondDenom,
+  });
+
+  String? unbondingTime;
+  int? maxValidators;
+  int? maxEntries;
+  int? historicalEntries;
+  String? bondDenom;
+
+  factory Params.fromJson(Map<String, dynamic> json) => Params(
+        unbondingTime: json["unbonding_time"],
+        maxValidators: json["max_validators"],
+        maxEntries: json["max_entries"],
+        historicalEntries: json["historical_entries"],
+        bondDenom: json["bond_denom"],
+  );
+
+  Map<String, dynamic> toJson() => {
+        "unbonding_time": unbondingTime,
+        "max_validators": maxValidators,
+        "max_entries": maxEntries,
+        "historical_entries": historicalEntries,
+        "bond_denom": bondDenom,
+  };
+}
+
+//----------------------------------------------//
+//              Staking Params Info             //
+//----------------------------------------------//
 class StakingParamsInfo {
   IconData? icon;
   String? title;
@@ -55,13 +114,19 @@ class StakingParamsInfo {
   }
 }
 
-List<StakingParamsInfo> stakingParamDataList =
-    stakingParamData.map((item) => StakingParamsInfo.fromJson(item)).toList();
+//----------------------------------------------//
+//              Prepare the Data                //
+//----------------------------------------------//
+// create a client
+final StakingParamsClient _stakingParamsClient = StakingParamsClient();
+final _client = http.Client(); 
+// fetch the params
+Future<StakingParams> stakingParams = _stakingParamsClient.fetchStakingParams(_client);
 
 var stakingParamData = [
   {
     "title": "Bonded Denom",
-    "value": stakingParams!.params!.bondDenom,
+    "value": stakingParams.then((value) => value.params!.bondDenom).toString(),
     "icon": Icons.verified_user,
     "change": "",
     "color": primaryColor,
@@ -107,7 +172,7 @@ var stakingParamData = [
   },
   {
     "title": "Historical Entries",
-    "value": stakingParams!.params!.historicalEntries,
+    "value": stakingParams.then((value) => value.params!.historicalEntries).toString(),
     "icon": Icons.message,
     "change": "+ 5%",
     "color": const Color(0xFFFFA113),
@@ -150,7 +215,7 @@ var stakingParamData = [
   },
   {
     "title": "Max Validators",
-    "value": stakingParams!.params!.maxValidators,
+    "value": stakingParams.then((value) => value.params!.maxValidators).toString(),
     "icon": Icons.comment,
     "change": "+ 8%",
     "color": const Color(0xFFA4CDFF),
@@ -193,7 +258,7 @@ var stakingParamData = [
   },
   {
     "title": "Mex Entries",
-    "value": stakingParams!.params!.maxEntries,
+    "value": stakingParams.then((value) => value.params!.maxEntries).toString(),
     "icon": Icons.monitor_heart,
     "change": "",
     "color": const Color(0xFFd50000),
@@ -236,7 +301,7 @@ var stakingParamData = [
   },
   {
     "title": "Unbonding Time",
-    "value": stakingParams!.params!.unbondingTime,
+    "value": stakingParams.then((value) => value.params!.unbondingTime).toString(),
     "icon": Icons.ring_volume,
     "change": "- 5%",
     "color": const Color(0xFF00F260),
@@ -279,55 +344,5 @@ var stakingParamData = [
   }
 ];
 
-StakingParams stakingParamsFromJson(String str) =>
-    StakingParams.fromJson(json.decode(str));
-
-String stakingParamsToJson(StakingParams data) => json.encode(data.toJson());
-
-class StakingParams {
-  Params? params;
-
-  StakingParams({
-    this.params,
-  });
-
-  factory StakingParams.fromJson(Map<String, dynamic> json) => StakingParams(
-        params: Params.fromJson(json["params"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "params": params!.toJson(),
-      };
-}
-
-class Params {
-  Params({
-    this.unbondingTime,
-    this.maxValidators,
-    this.maxEntries,
-    this.historicalEntries,
-    this.bondDenom,
-  });
-
-  String? unbondingTime;
-  int? maxValidators;
-  int? maxEntries;
-  int? historicalEntries;
-  String? bondDenom;
-
-  factory Params.fromJson(Map<String, dynamic> json) => Params(
-        unbondingTime: json["unbonding_time"],
-        maxValidators: json["max_validators"],
-        maxEntries: json["max_entries"],
-        historicalEntries: json["historical_entries"],
-        bondDenom: json["bond_denom"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "unbonding_time": unbondingTime,
-        "max_validators": maxValidators,
-        "max_entries": maxEntries,
-        "historical_entries": historicalEntries,
-        "bond_denom": bondDenom,
-      };
-}
+List<StakingParamsInfo> stakingParamDataList =
+    stakingParamData.map((item) => StakingParamsInfo.fromJson(item)).toList();

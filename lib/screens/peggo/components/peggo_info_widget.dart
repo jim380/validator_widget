@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:validator_widget/constants/constants.dart';
 import 'package:validator_widget/models/dummy_peggo_info.dart';
+import 'package:validator_widget/models/staking_params.dart';
 
 class PeggoInfoWidget extends StatefulWidget {
   const PeggoInfoWidget({
@@ -10,8 +11,8 @@ class PeggoInfoWidget extends StatefulWidget {
     required this.peggoData,
   }) : super(key: key);
 
-  final DummyPeggoInfo peggoData;
-  // final StakingParamsInfo peggoData;
+  // final DummyPeggoInfo peggoData;
+  final StakingParamsInfo peggoData;
 
   @override
   _PeggoInfoWidgetState createState() => _PeggoInfoWidgetState();

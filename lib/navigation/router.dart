@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:validator_widget/models/models.dart';
 import 'package:validator_widget/models/pages.dart';
 import 'package:validator_widget/screens/screens.dart';
+import 'package:validator_widget/screens/test_screen/test_screen.dart';
 
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -32,7 +33,7 @@ class AppRouter extends RouterDelegate
         // add pages here
 
         // the the app is not initialized 
-        if (!appStateManager.isInitialized) DashboardScreen.page(),
+        if (!appStateManager.isInitialized) TestScreen.page(),
         if (appStateManager.isInitialized && !appStateManager.isLoggedIn)
           DashboardScreen.page(),
       ],

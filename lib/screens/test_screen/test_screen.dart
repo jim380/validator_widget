@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:validator_widget/models/pages.dart';
+import 'package:validator_widget/models/state_manager.dart';
 
 import 'package:validator_widget/utils/responsive.dart';
 import 'package:validator_widget/screens/peggo/peggo_screen.dart';
-import 'package:validator_widget/screens/home_screen/components/side_menu.dart';
+import 'package:validator_widget/screens/test_screen/components/side_menu.dart';
 import 'package:validator_widget/controllers/menu_controller.dart';
 import 'package:validator_widget/clients/staking_params_client.dart';
 import 'package:provider/provider.dart';
@@ -103,11 +105,31 @@ class _TestPageState extends State<TestPage> {
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({
+class TestScreen extends StatefulWidget {
+    static MaterialPage page() {
+    return MaterialPage(
+      name: Pages.testPath,
+      key: ValueKey(Pages.testPath),
+      child: const TestScreen(),
+    );
+  }
+  
+  const TestScreen({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<TestScreen> createState() => _TestScreenState();
+}
+
+class _TestScreenState extends State<TestScreen> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // call funcstions in router.dart to update AppStateManager
+    Provider.of<AppStateManager>(context, listen: false);
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
